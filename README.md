@@ -15,9 +15,13 @@ A standalone ESP32-based pH monitoring node with:
 FEATURES
 --------
 - Wi-Fi AP fallback for first-time setup
-  ![Wi-Fi Setup](docs/ap.html.png)
+  
+![Wi-Fi Setup](docs/ap.html.png)
+
 - Web UI
-  ![Dashboard](docs/index.html.png)
+
+![Dashboard](docs/index.html.png)
+
 - Physical-button pH calibration (safe & deliberate)
 - Live ADC, voltage, and pH display
 - Voltage trend chart
