@@ -507,11 +507,16 @@ static int vRingCount = 0;
 static float vEma = 0.0f;
 static const float EMA_A = 0.2f;
 
+// Voltage calibration offset
+static float V_OFFSET = 0.0f;
+static float V_GAIN = 1.0f;
+
 static float adcToVoltage(uint16_t adc) {
-  // ESP32 ADC is non-linear; for a blueprint we keep it simple.
-  // You can refine with calibration curve later.
-  // ADC range depends on attenuation; assume full-scale ~= 4095 maps to ~3.3V
-  return (adc / 4095.0f) * ADC_VREF;
+  float v = (adc / 4095.0f) * ADC_VREF;
+  v = (v * V_GAIN) + V_OFFSET;
+  if (v < 0) v = 0;
+  if (v > ADC_VREF) v = ADC_VREF;
+  return v;
 }
 
 static void sensorInit() {
