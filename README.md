@@ -87,37 +87,17 @@ Configurable:
 
 ------------------------------------------------------------
 
-MQTT TOPICS (EXAMPLE)
---------------------
-Base topic: phnode
-```
-phnode/<device>/ph
-phnode/<device>/voltage
-phnode/<device>/adc
-phnode/<device>/status
-phnode/<device>/cal
-```
-Example payload:
-```
-{
-  "ph": 6.87,
-  "voltage": 2.314,
-  "adc": 2876,
-  "cal": "OK"
-}
-```
-------------------------------------------------------------
 
 HOME ASSISTANT (MQTT)
 --------------------
 In Home Assistant:
-1. Create mqtt_user Settings > People > Add Person
-2. Give proper, Allow login, Set Password
-3. Create integration Settings > Devices & Services > Integrations > Add integration > MQTT
+1. Create: mqtt_user Settings > People > Add Person
+- Allow login, Set Password (write it down. no way you can retrieve it)
+2. Create integration: Settings > Devices & Services > Integrations > Add integration > MQTT
 
 After adding the MQTT card
 
-4. Listen to Topic: Settings > Devices & Services > Integrations > MQTT
+3. Listen to Topic: Settings > Devices & Services > Integrations > MQTT
   - Click Configure (gear button)
   - Go to "Listen to a topic card"
   - Enable Format JSON content
@@ -137,7 +117,7 @@ After adding the MQTT card
   - Remember/write down the topic
   - Looking at the example, the topic is: phnode/phnode-06DC/telemetry
     
-5. + Add MQTT devices and follow HA instruction.
+4. + Add MQTT devices and follow HA instruction.
 
 Note:
 - MQTT Auto Discovery is NOT used by design
