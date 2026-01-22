@@ -91,11 +91,11 @@ MQTT TOPICS (EXAMPLE)
 --------------------
 Base topic: phnode
 ```
-phnode/device/ph
-phnode/device/voltage
-phnode/device/adc
-phnode/device/status
-phnode/device/cal
+phnode/<device>/ph
+phnode/<device>/voltage
+phnode/<device>/adc
+phnode/<device>/status
+phnode/<device>/cal
 ```
 Example payload:
 ```
@@ -111,33 +111,43 @@ Example payload:
 HOME ASSISTANT (MQTT)
 --------------------
 In Home Assistant:
+1. Create mqtt_user Settings > People > Add Person
+2. Give proper, Allow login, Set Password
+3. Create integration Settings > Devices & Services > Integrations > Add integration > MQTT
 
-1. Enable MQTT integration
-2. Use the same broker as the ESP32
-3. Create MQTT sensors manually or via configuration.yaml
+After adding the MQTT card
+
+4. Listen to Topic: Settings > Devices & Services > Integrations > MQTT
+  - Click Configure (gear button)
+  - Go to "Listen to a topic card"
+  - Enable Format JSON content
+  - Type: phnode/#
+  - Start listening (if message is appeared. Great!!)
+  - Example Messages:
+    ```
+    Message 9 received on phnode/phnode-06DC/telemetry at 11:05 AM:
+    {
+        "ts_ms": 1577248,
+        "adc": 3366,
+        "v": 2.708141327,
+        "ph": 2.896392822,
+        "cal": "OK"
+    }
+    ```
+  - Remember/write down the topic
+  - Your topic is right after device name. In this case the topic is: phnode-06DC
+    
+5. + Add MQTT devices and follow the instruction.
    
 Example sensor:
 ```
 mqtt:
   sensor:
     - name: "pH Node pH"
-      state_topic: "phnode/<deviceName>/ph"
-      value_template: "{{ value_json.ph }}"
+      state_topic: "phnode/<topicDevice>/ph"
       unit_of_measurement: "pH"
 ```
-or
-```
-mqtt:
-  sensor:
-    - name: "pH Node Voltage (simple)"
-      state_topic: "phnode/<deviceName>/voltage"
-      unit_of_measurement: "V"
 
-    - name: "pH Node pH (simple)"
-      state_topic: "phnode/<deviceName>/ph"
-      unit_of_measurement: "pH"
-
-```
 Note:
 - MQTT Auto Discovery is NOT used by design
 
