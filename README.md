@@ -135,18 +135,9 @@ After adding the MQTT card
     }
     ```
   - Remember/write down the topic
-  - Your topic is right after device name. In this case the topic is: phnode-06DC
+  - Looking at the example, the topic is: phnode/phnode-06DC/telemetry
     
-5. + Add MQTT devices and follow the instruction.
-   
-Example sensor:
-```
-mqtt:
-  sensor:
-    - name: "pH Node pH"
-      state_topic: "phnode/<topicDevice>/ph"
-      unit_of_measurement: "pH"
-```
+5. + Add MQTT devices and follow HA instruction.
 
 Note:
 - MQTT Auto Discovery is NOT used by design
