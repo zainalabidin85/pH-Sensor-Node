@@ -92,7 +92,6 @@ static const uint32_t VLONG_MS    = 9000;
 
 // ADC sampling
 static const uint8_t  ADC_SAMPLES_PER_TICK = 20;
-static const float    ADC_VREF = 3.3f;  // assumes ADC input scaled to <= 3.3V
 static const float    V_MIN_DELTA = 0.05f; // calibration voltage delta min
 
 // Optional: set 0 to compile without MQTT
@@ -512,11 +511,14 @@ static float V_OFFSET = 0.0f;
 static float V_GAIN = 1.0f;
 
 static float adcToVoltage(uint16_t adc) {
-  float v = (adc / 4095.0f) * ADC_VREF;
-  v = (v * V_GAIN) + V_OFFSET;
-  if (v < 0) v = 0;
-  if (v > ADC_VREF) v = ADC_VREF;
-  return v;
+  //voltage at ADC pin (after voltage divider)
+  const float ADC_MAX_V = 2.5f; // voltage divider 47k/47k from 5v
+  const float DIV_GAIN = 2.0f; // divider
+  
+  float v_adc = (adc / 4095.0f) * ADC_MAX_V;
+  float v_board = v_adc * DIV_GAIN;
+
+  return v_board;
 }
 
 static void sensorInit() {
