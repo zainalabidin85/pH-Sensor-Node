@@ -149,11 +149,11 @@ pio run --target uploadfs
 EASY FLASH
 -------------
 
-- Recommended: EspHome Web <www.web.esphome.io>
+- Recommended: EspHome Web <https://web.esphome.io/>
 - Download: firmware.bin
 - Follow instruction of the EspHome Web.
-- Note: you still need to upload the web interface via file manager
-  - Ap.html -- for WiFi credential
+- Note: after flash, you still need to upload the web interface via file manager
+  - ap.html -- for WiFi credential
   - index.html -- for Dashboard interface
 ------------------------------------------------------------
 
