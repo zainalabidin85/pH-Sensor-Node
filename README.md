@@ -53,7 +53,7 @@ Wi-Fi Provisioning (ap.html)
 - Used only for Wi-Fi setup
 
 Main Dashboard (index.html)
-- Access via: http://<ESP32-IP>/
+- Access via: http://<ESP32_IP>/
 - Displays pH, voltage, ADC, calibration status, device info, MQTT state
 
 ------------------------------------------------------------
@@ -138,12 +138,23 @@ REST API ENDPOINTS
 
 BUILD & FLASH
 -------------
-Recommended: PlatformIO
+Using PlatformIO
 ```
 pio run
 pio run --target upload
 pio run --target uploadfs
 ```
+------------------------------------------------------------
+
+EASY FLASH
+-------------
+
+- Recommended: EspHome Web <www.web.esphome.io>
+- Download: firmware.bin
+- Follow instruction of the EspHome Web.
+- Note: you still need to upload the web interface via file manager
+  - Ap.html -- for WiFi credential
+  - index.html -- for Dashboard interface
 ------------------------------------------------------------
 
 Free for education, research, and commercial use.
